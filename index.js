@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express();
 const bodyparser = require('body-parser');
@@ -43,6 +44,6 @@ app.get('/user/login',(req,res) => {
 })
 
 app.use(routes);
-app.listen(4141,() => {
+app.listen(process.env.PORT,() => {
     console.info('server connected')
 })
