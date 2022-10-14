@@ -47,3 +47,5 @@ app.use(routes);
 app.listen(process.env.PORT,() => {
     console.info('server connected')
 })
+
+// LIVE_URL :- https://inventory-management-41.herokuapp.com/
