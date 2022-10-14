@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+<body class="body-color">
+    
+    <div class="product">
+        <form class="form-control" action="/product/updateproduct/<%= _id %>" method="post">
+            <h1>Edit Product</h1>
+            <input type="hidden" value="<%= _id %>">
+            <label>Product Name</label>
+            <br>
+            <input type="text" name="productname" value="<%= productname %>">
+            <br>
+            <label>Product Prize</label>
+            <br>
+            <input type="text" name="prize" value="<%= prize %>">
+            <br>
+            <label>Product Quantity</label>
+            <br>
+            <input type="text" name="quantity" value="<%= quantity %>">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

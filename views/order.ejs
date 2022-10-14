@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Order Page</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="row align-item-center justify-content-betwwen">
+            <div class="logo">
+                <img src="../images/logo-1.png" alt="logo-1">
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/adminpanel">Admin-Panel</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="user">
+    <div class="container">
+        <h3>Orders <span><%= user.roll %></span></h3>
+    </div>
+</div>
+
+<section class="pending">
+    <div class="container">
+        <h4>Pending Order's</h4>
+        <div class="row myrow justify-content-betwwen">
+            <div class="myorder">image</div>
+            <div class="myorder">Product Name</div>
+            <div class="myorder">Prize</div>
+            <div class="myorder">Quantity</div>
+            <div class="myorder">Total Amount</div>
+            <div class="myorder">Purchased By</div>
+            <div class="myorder">Deliver</div>
+        </div>
+        <% data.forEach((i) => { %>  
+            <% if( i.status === 'pending'){ %> 
+                <div class="row mb-2 justify-content-betwwen align-item-center">
+                    <div class="myorder h">
+                        <img src="images/<%= i.image %>" alt="">
+                    </div>
+                    <div class="myorder">
+                        <h3><%= i.productname %> </h3>
+                    </div>
+                    <div class="myorder">
+                        <p>Rs. <%= i.prize %></p>
+                    </div>
+                    <div class="myorder">
+                        <%= i.quantity %>
+                    </div>
+                    <div class="myorder">
+                       Rs. <%= i.amount %>
+                    </div>
+                    <div class="myorder">
+                        <%= i.userid.name %>
+                    </div>
+                    <div class="myorder">
+                        <a href="/product/delivered/<%= i._id %>">Delivere</a>
+                    </div>
+                </div>
+            <% } %>
+        <% }) %>
+    </div>
+</section>
+
+<section class="pending delivered">
+    <div class="container">
+        <h4> Order Completed</h4>
+        <div class="row myrow justify-content-betwwen">
+            <div class="myorder">image</div>
+            <div class="myorder">Product Name</div>
+            <div class="myorder">Prize</div>
+            <div class="myorder">Quantity</div>
+            <div class="myorder">Amount Received</div>
+            <div class="myorder">Delivered To</div>
+            <div class="myorder">Status</div>
+        </div>
+        <% data.forEach((i) => { %>  
+            <% if( i.status === 'delivered'){ %> 
+                <div class="row mb-2 justify-content-betwwen align-item-center">
+                    <div class="myorder">
+                        <img src="images/<%= i.image %>" alt="">
+                    </div>
+                    <div class="myorder">
+                        <h3><%= i.productname %> </h3>
+                    </div>
+                    <div class="myorder">
+                        <p>Rs. <%= i.prize %></p>
+                    </div>
+                    <div class="myorder">
+                        <%= i.quantity %>
+                    </div>
+                    <div class="myorder">
+                        Rs. <%= i.amount %>
+                    </div>
+                    <div class="myorder">
+                        <%= i.userid.name %>
+                    </div>
+                    <div class="myorder">
+                        <h2>Order <br> Delivered</h2>
+                    </div>
+                </div>
+            <% } %>
+        <% }) %>
+    </div>
+</section>
+</body>
+</html>

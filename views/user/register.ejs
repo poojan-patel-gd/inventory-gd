@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Register</title>
+</head>
+<body class="body-color">
+    <form class="form-control" action="/user/register" method="post">
+        <h1>Register</h1>
+        <label>name</label>
+        <input type="text" name="name" placeholder="Enter Name">
+        <br>
+        <br>
+        <label>email</label>
+        <input type="text" name="email" placeholder="Enter Email">
+        <br>
+        <br>
+        <label>password</label>
+        <input type="text" name="password" placeholder="Enter Password">
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+
+        <h5><a href="/user/login">you already have an account</a></h5>
+    </form>
+</body>
+
+<script>
+    <% if(flash.success && flash.success.length > 0){ %>
+        new Noty({
+            text : '<%= flash.success %>',
+            type : 'success',
+            timeout : 1000,
+        }).show()
+    <% } %>
+    
+    <% if(flash.error && flash.error.length > 0){ %>
+        new Noty({
+            text : '<%= flash.error %>',
+            type : 'error',
+            timeout : 1000,
+        }).show()
+    <% } %>
+</script>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    
+<header>
+    <div class="container">
+        <div class="row align-item-center justify-content-betwwen">
+            <div class="logo">
+                <img src="../images/logo-1.png" alt="logo-1">
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                    <% if(user.roll == 'admin'){ %>
+                        <a href="/adminpanel">Admin-Panel</a>
+                    <% } %>
+                    </li>
+                    <% if(user.roll == 'user'){ %>
+                        <li>
+                            <a href="/cart">My Cart</a>
+                        </li>
+                    <% } %>
+                    <li><a href="/user/logout">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="user">
+    <div class="container">
+        <h3>Welcome <%= user.name %> <span><%= user.roll %></span></h3>
+    </div>
+</div>
+
+<div class="category">
+    <div class="container">
+        <div class="row">
+            <a href="/">All</a> 
+            <% category.forEach((i) => { %>
+                <a href="/product/<%= i._id %>"><%= i.category %></a>
+            <% }) %>
+        </div>
+    </div>
+</div>
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <% if(user.roll == 'admin' || user.roll == 'user'){ %>
+                <% data.forEach((i) => { %>
+                    <div class="product">
+                        <form action="/product/buyproduct/<%= i._id %>" method="post">
+                            <div class="pro-image">
+                                <img src="/images/<%= i.image %>" alt="product-1">
+                            </div>
+                            <div class="pro-content">
+                                <h3>Name : <%= i.productname %></h3>
+                                <p>Price : <%= i.prize %></p>
+                                <a href="/product/plus"></a><a href="/product/minus"></a>
+                                <label>Quantity : </label>
+                                <input type="number" name="myqnt" value="1">
+                                <p>Quantity left : <%= i.quantity %></p>
+                                <button type="submit" class="buy">Buy Now</button>
+                            </div>
+                        </form>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+    <!-- <% if(user.roll == 'admin' || user.roll == 'user'){ %>
+    <table cellspacing="10">
+        <tr>
+            <th>image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>quantity</th>
+        </tr>
+        <tbody>
+            <% data.forEach((i) => { %>
+                <tr>
+                    <td><%= i.image %></td>
+                    <td><%= i.productname %></td>
+                    <td><%= i.prize %></td>
+                    <td><%= i.quantity %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } %> -->
+
+
+</body>
+
+<script>
+    <% if(flash.success && flash.success.length > 0){ %>
+        new Noty({
+            text : '<%= flash.success %>',
+            type : 'success',
+            timeout : 1000,
+        }).show()
+    <% } %>
+    
+    <% if(flash.error && flash.error.length > 0){ %>
+        new Noty({
+            text : '<%= flash.error %>',
+            type : 'error',
+            timeout : 1000,
+        }).show()
+    <% } %>
+</script>
+</html>
