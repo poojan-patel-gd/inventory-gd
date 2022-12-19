@@ -5,7 +5,6 @@ const flash = require('connect-flash');
 const Order = require('./../models/Order');
 const Category = require('../models/category')
 
-
 module.exports.addproduct = async (req,res) => {
       await Products.create({
         productname : req.body.productname,
